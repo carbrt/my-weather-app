@@ -1,0 +1,47 @@
+html {
+  top: 5%;
+  left: 27%;
+  right: auto;
+  display: block;
+  position: absolute;
+}
+
+body {
+  background-color: lightgrey;
+  color: black;
+  margin: 0;
+}
+
+.container {
+  width: 600px;
+  box-align: center;
+  align-items: center;
+  margin: 20px 20px;
+  padding: 15px 60px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.container > div {
+  background-color: white;
+  padding: 10px;
+}
+
+img {
+  width: 150px;
+}
+
+.emoji-today {
+  text-align: end;
+}
+
+.currenttime {
+  text-align: center;
+}
+
+/*CSS für Searchbar*/
+
+.active-cyan .fa,
+.active-cyan-2 .fa {
+  color: #4dd0e1;
+}
