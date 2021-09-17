@@ -1,115 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
- <link rel="stylesheet" href="style-general.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- Search form -->
-    <form
-      class="
-        form-inline
-        d-flex
-        justify-content-center
-        md-form
-        form-sm
-        active-cyan active-cyan-2
-        mt-2
-      "
-      id="search-form"
-      
-    >
-      <i class="fas fa-search" aria-hidden="true">
-      <input
-        class="form-control form-control-sm ml-3 w-75"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-        id="search-text-input"
-      />
-    </form>
-    <!-- erster container mit emoji -->
-    <div class="container-bg">
-      <div class="container">
-        <div class="row">
-          <div class="col" >
-           <span id="tempnow">23°C</span> <br />
-            <h1 id="cityname">
-            Coimbra, Portugal</h1>
-          </div>
-          <div class="col text-right">
-            <img class="sun" src="images/hot_sun.png" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- zweiter container -->
-    <div class="container-bg">
-      <div class="container">
-        <div class="row row-cols-5" id="temperature">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="emojis">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="time">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-      </div>
-    </div>
-    <!-- dritter container -->
-    <div class="container-bg">
-      <div class="container">
-        <div class="row row-cols-5" id="temperatur">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="emojis">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="time">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-      </div>
-    </div>
-    <!-- aktuelle zeit -->
-    <div class="currenttime">
-      <h4>Current time and place</h4><small class="opensource"><a href="https://github.com/carbrt/my-weather-app" target="_blank">Open-source code </a> by Carla Brandschert</small>
-    </div>
-    
-  </body>
-<script src="script.js"></script>
-</html>
+// current day and time
+
+let now = new Date();
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+let hour = now.getHours();
+let minute = now.getMinutes();
+let h4 = document.querySelector("h4");
+h4.innerHTML = `${day} ${hour}:${minute}`;
+
+// current city
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-text-input");
+  console.log(searchInput.value);
+  let h1 = document.querySelector("#cityname");
+
+  if (searchInput.value) {
+    h1.innerHTML = `${searchInput.value}`;
+    let apiKey = "1e63667f4f920931fdaeaa011d900e3e";
+    let city = `${searchInput.value}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(showTemperature);
+  } else {
+    h1.innerHTML = null;
+    alert("Please type a city");
+  }
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
+
+// temperature results
+function showTemperature(response) {
+  console.log(response);
+  document.querySelector("#cityname").innerHTML = `${response.data.name}`;
+  let currenttemp = document.querySelector("#tempnow");
+  currenttemp.innerHTML = Math.round(response.data.main.temp);
+}
