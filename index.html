@@ -14,7 +14,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Document</title>
   </head>
-    <script src="script.js"></script>
   <body>
     <!-- Search form -->
     <form
@@ -44,12 +43,16 @@
       <div class="container">
         <div class="row">
           <div class="col" >
-           <span id="tempnow">23°C</span> <br />
-            <h1 id="cityname">
-            Coimbra, Portugal</h1>
+             <h1 id="tempnow">23°C</h1>   
+            <ul>
+              <li> <span id="cityname">City</span></li>
+                <li><span id="description">Weather description</span></li>
+                <li>Wind: <span id="wind">20</span> m/h</li>
+                <li>Humidity: <span id="humidity">20</span>%</li>
+            </ul>
           </div>
           <div class="col text-right">
-            <img class="sun" src="images/hot_sun.png" />
+            <img src="" alt="Clear" id="emoji-today" class="float-right" />
           </div>
         </div>
       </div>
@@ -57,58 +60,14 @@
     <!-- zweiter container -->
     <div class="container-bg">
       <div class="container">
-        <div class="row row-cols-5" id="temperature">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="emojis">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="time">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-      </div>
+      <div class="weather-forecast" id="forecast"></div>
     </div>
-    <!-- dritter container -->
-    <div class="container-bg">
-      <div class="container">
-        <div class="row row-cols-5" id="temperatur">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="emojis">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
-        <div class="row row-cols-5" id="time">
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
       </div>
-    </div>
     <!-- aktuelle zeit -->
     <div class="currenttime">
-      <h4>Current time and place</h4>
+      <h4>Current time and place</h4><small class="opensource"><a href="https://github.com/carbrt/my-weather-app" target="_blank">Open-source code </a> by Carla Brandschert</small>
     </div>
+    
   </body>
+  <script src="script.js"></script>
 </html>
