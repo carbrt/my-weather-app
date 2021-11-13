@@ -43,7 +43,7 @@ form.addEventListener("submit", search);
 function searchCity(city) {
   let apiKey = `1e63667f4f920931fdaeaa011d900e3e`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  axios(apiUrl).then(displayForecast);
+  axios(apiUrl).then(showTemperature);
 }
 
 searchCity("Paris");
